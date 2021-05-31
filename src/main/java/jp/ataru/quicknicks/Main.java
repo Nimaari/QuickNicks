@@ -48,6 +48,7 @@ public final class Main extends JavaPlugin {
                 Config.set(playerFile, "nick", e.getPlayer().getName());
             }
             e.getPlayer().setDisplayName(Config.getString(playerFile, "nick") + "§r");
+            e.getPlayer().setPlayerListName(Config.getString(playerFile, "nick") + "§r");
         }
 
     }
@@ -66,6 +67,7 @@ public final class Main extends JavaPlugin {
                         if (sizeCheck.length() <= Config.getInt(configFile, "nickSize")) {
                             Config.set(playerFile, "nick", argument);
                             player.setDisplayName(Config.getString(playerFile, "nick") + "§r");
+                            player.setPlayerListName(Config.getString(playerFile, "nick") + "§r");
                             player.sendMessage(Config.get(configFile, "prefix") + " Your nickname is now §f" + Config.getString(playerFile, "nick") + "§7.");
                         } else {
                             player.sendMessage(Config.get(configFile, "prefix") + " Your nickname is too long!");
@@ -74,6 +76,7 @@ public final class Main extends JavaPlugin {
                         player.sendMessage(Config.get(configFile, "prefix") + " Your nickname was removed.");
                         Config.set(playerFile, "nick", player.getName());
                         player.setDisplayName(Config.getString(playerFile, "nick") + "§r");
+                        player.setPlayerListName(Config.getString(playerFile, "nick") + "§r");
                     }
                 } else {
                     player.sendMessage(Config.get(configFile, "prefix") + " You need to specify a nickname!");
