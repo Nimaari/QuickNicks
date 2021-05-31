@@ -1,0 +1,9 @@
+name: QuickNicks
+version: ${project.version}
+main: jp.ataru.quicknicks.Main
+api-version: 1.16
+authors: [ Ataru ]
+description: A plugin designed to make setting nicks quick and easy!
+commands:
+  nick:
+    usage: /<command>
