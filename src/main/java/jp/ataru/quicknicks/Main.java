@@ -62,7 +62,6 @@ public final class Main extends JavaPlugin {
                 if (args.length == 1) {
                     if (!args[0].equalsIgnoreCase("off")) {
                         String argument = args[0].replace("&", "§");
-                        ;
                         String sizeCheck = argument.replace("§", "");
                         if (sizeCheck.length() <= Config.getInt(configFile, "nickSize")) {
                             Config.set(playerFile, "nick", argument);
