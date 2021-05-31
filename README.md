@@ -3,10 +3,9 @@ Open-source Minecraft nicknames plugin.
 
 Nothing really special, made this per request within 2 hours, I **may** update it from time to time if requested or if interest peaks.
 
-# Mini Wiki
-
 Commands:
 ``/nick <nick>`` - Sets you a nick.
+
 ``/nick off`` - Removes your nick.
 
 Colorcodes are supported.
