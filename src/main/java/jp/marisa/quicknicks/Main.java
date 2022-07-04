@@ -1,4 +1,4 @@
-package jp.ataru.quicknicks;
+package jp.marisa.quicknicks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -19,19 +19,20 @@ public final class Main extends JavaPlugin {
         long currentTime = System.currentTimeMillis();
         getDataFolder().mkdir();
         File userDataFolder = new File(getDataFolder() + File.separator + "userData" + File.separator);
-        if (!userDataFolder.exists()) {
+
+        if (!userDataFolder.exists())
             userDataFolder.mkdir();
-        }
+
         File configFile = new File(getDataFolder() + File.separator + "config.yml");
-        if (Config.get(configFile, "nickSize") == null) {
+        if (Config.get(configFile, "nickSize") == null)
             Config.set(configFile, "nickSize", 32);
-        }
-        if (Config.get(configFile, "prefix") == null) {
+
+        if (Config.get(configFile, "prefix") == null)
             Config.set(configFile, "prefix", "§8[§bQuickNicks§8]§7");
-        }
+
         getCommand("nick").setExecutor(new NickCommand());
         Bukkit.getPluginManager().registerEvents(new Listeners(), this);
-        System.out.println("[QuickNicks] Hello! My maker is Ataru! Successful startup took " + (System.currentTimeMillis() - currentTime) + "ms.");
+        System.out.println("[QuickNicks] Successful startup took " + (System.currentTimeMillis() - currentTime) + "ms.");
     }
 
     @Override
@@ -44,9 +45,9 @@ public final class Main extends JavaPlugin {
         @EventHandler
         public void join(PlayerJoinEvent e) {
             File playerFile = new File(getDataFolder() + File.separator + "userData" + File.separator + e.getPlayer().getName() + ".yml");
-            if (Config.getString(playerFile, "nick") == null) {
+            if (Config.getString(playerFile, "nick") == null)
                 Config.set(playerFile, "nick", e.getPlayer().getName());
-            }
+
             e.getPlayer().setDisplayName(Config.getString(playerFile, "nick") + "§r");
             e.getPlayer().setPlayerListName(Config.getString(playerFile, "nick") + "§r");
         }
@@ -59,6 +60,7 @@ public final class Main extends JavaPlugin {
             Player player = (Player) sender;
             File configFile = new File(getDataFolder() + File.separator + "config.yml");
             File playerFile = new File(getDataFolder() + File.separator + "userData" + File.separator + player.getName() + ".yml");
+
             if (player.hasPermission("quicknicks.nick")) {
                 if (args.length == 1) {
                     if (!args[0].equalsIgnoreCase("off")) {
