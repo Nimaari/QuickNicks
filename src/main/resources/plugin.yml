@@ -1,8 +1,8 @@
 name: QuickNicks
 version: ${project.version}
-main: jp.marisa.quicknicks.Main
-api-version: 1.18.2
-authors: [Marisa]
+main: tk.nimari.QuickNicks
+api-version: 1.14
+authors: [Nimari]
 description: A plugin designed to make setting nicks quick and easy!
 commands:
   nick:

@@ -1,4 +1,4 @@
-package jp.marisa.quicknicks;
+package tk.nimari;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
-public final class Main extends JavaPlugin {
+public final class QuickNicks extends JavaPlugin {
 
     @Override
     public void onEnable() {

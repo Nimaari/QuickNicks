@@ -1,4 +1,4 @@
-package jp.marisa.quicknicks;
+package tk.nimari;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
