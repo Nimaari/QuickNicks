@@ -1,5 +1,6 @@
 package tk.nimari;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,6 +12,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.logging.Level;
 
 public final class QuickNicks extends JavaPlugin {
 
@@ -19,6 +21,8 @@ public final class QuickNicks extends JavaPlugin {
         long currentTime = System.currentTimeMillis();
         getDataFolder().mkdir();
         File userDataFolder = new File(getDataFolder() + File.separator + "userData" + File.separator);
+
+        new Metrics(this, 16782);
 
         if (!userDataFolder.exists())
             userDataFolder.mkdir();
@@ -32,12 +36,12 @@ public final class QuickNicks extends JavaPlugin {
 
         getCommand("nick").setExecutor(new NickCommand());
         Bukkit.getPluginManager().registerEvents(new Listeners(), this);
-        System.out.println("[QuickNicks] Successful startup took " + (System.currentTimeMillis() - currentTime) + "ms.");
+        getLogger().log(Level.INFO, "Successful startup took " + (System.currentTimeMillis() - currentTime) + "ms.");
     }
 
     @Override
     public void onDisable() {
-        System.out.println("[QuickNicks] Bye-bye, see you another time!");
+        getLogger().log(Level.INFO, "Bye-bye! See you another time.");
     }
 
     public class Listeners implements Listener {
