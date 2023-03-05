@@ -6,7 +6,7 @@
 
     <groupId>tk.nimari.quicknicks</groupId>
     <artifactId>QuickNicks</artifactId>
-    <version>1.4</version>
+    <version>1.4.1</version>
     <packaging>jar</packaging>
 
     <name>QuickNicks</name>

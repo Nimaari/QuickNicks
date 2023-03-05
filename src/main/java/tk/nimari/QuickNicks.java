@@ -49,6 +49,7 @@ public final class QuickNicks extends JavaPlugin {
         @EventHandler
         public void join(PlayerJoinEvent e) {
             File playerFile = new File(getDataFolder() + File.separator + "userData" + File.separator + e.getPlayer().getName() + ".yml");
+
             if (Config.getString(playerFile, "nick") == null)
                 Config.set(playerFile, "nick", e.getPlayer().getName());
 
@@ -65,31 +66,32 @@ public final class QuickNicks extends JavaPlugin {
             File configFile = new File(getDataFolder() + File.separator + "config.yml");
             File playerFile = new File(getDataFolder() + File.separator + "userData" + File.separator + player.getName() + ".yml");
 
-            if (player.hasPermission("quicknicks.nick")) {
-                if (args.length == 1) {
-                    if (!args[0].equalsIgnoreCase("off")) {
-                        String argument = args[0].replace("&", "§");
-                        String sizeCheck = argument.replace("§", "");
-                        if (sizeCheck.length() <= Config.getInt(configFile, "nickSize")) {
-                            Config.set(playerFile, "nick", argument);
-                            player.setDisplayName(Config.getString(playerFile, "nick") + "§r");
-                            player.setPlayerListName(Config.getString(playerFile, "nick") + "§r");
-                            player.sendMessage(Config.get(configFile, "prefix") + " Your nickname is now §f" + Config.getString(playerFile, "nick") + "§7.");
-                        } else {
-                            player.sendMessage(Config.get(configFile, "prefix") + " Your nickname is too long!");
-                        }
-                    } else {
-                        player.sendMessage(Config.get(configFile, "prefix") + " Your nickname was removed.");
-                        Config.set(playerFile, "nick", player.getName());
-                        player.setDisplayName(Config.getString(playerFile, "nick") + "§r");
-                        player.setPlayerListName(Config.getString(playerFile, "nick") + "§r");
-                    }
-                } else {
-                    player.sendMessage(Config.get(configFile, "prefix") + " You need to specify a nickname!");
-                }
-            } else {
+            if (!player.hasPermission("quicknicks.nick")) {
                 player.sendMessage(Config.get(configFile, "prefix") + " No permission.");
+                return true;
             }
+
+            if (args.length != 1) {
+                player.sendMessage(Config.get(configFile, "prefix") + " You need to specify a nickname!");
+                return true;
+            }
+
+            if (!args[0].equalsIgnoreCase("off")) {
+                String argument = args[0].replace("&", "§");
+                String sizeCheck = argument.replace("§", "");
+                if (sizeCheck.length() <= Config.getInt(configFile, "nickSize")) {
+                    Config.set(playerFile, "nick", argument);
+                    player.setDisplayName(Config.getString(playerFile, "nick") + "§r");
+                    player.setPlayerListName(Config.getString(playerFile, "nick") + "§r");
+                    player.sendMessage(Config.get(configFile, "prefix") + " Your nickname is now §f" + Config.getString(playerFile, "nick") + "§7.");
+                } else player.sendMessage(Config.get(configFile, "prefix") + " Your nickname is too long!");
+            } else {
+                player.sendMessage(Config.get(configFile, "prefix") + " Your nickname was removed.");
+                Config.set(playerFile, "nick", player.getName());
+                player.setDisplayName(Config.getString(playerFile, "nick") + "§r");
+                player.setPlayerListName(Config.getString(playerFile, "nick") + "§r");
+            }
+
             return true;
         }
     }
