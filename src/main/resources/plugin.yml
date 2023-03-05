@@ -2,7 +2,7 @@ name: QuickNicks
 version: ${project.version}
 main: tk.nimari.QuickNicks
 api-version: 1.14
-authors: [Nimari]
+authors: [Nimāri]
 description: A plugin designed to make setting nicks quick and easy!
 commands:
   nick:
